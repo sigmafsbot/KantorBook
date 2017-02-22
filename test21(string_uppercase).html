@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+	<!-- <script src="script1.js"></script> -->
+
+	<script>
+		function ucFirst(str) {
+			str = str.charAt(0).toUpperCase() + str.slice(1); // .charAt() ВСЕГДА возвращает строку
+			// str = str[0].toUpperCase() + str.slice(1); // будет возвращать undefined если строка пустая
+
+			alert(str);
+			return str;
+		}
+
+		console.log(ucFirst("вася") == "Вася");
+		console.log(ucFirst("") == ""); // нет ошибок при пустой строке
+	</script>
+</body>
+
+</html>

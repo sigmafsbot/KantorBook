@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+	<!-- <script src="script1.js"></script> -->
+	<script>
+	function filterRange(arr, a, b) {
+		var resArr = [];
+
+		for (i=0; i < arr.length; i++) {
+			if (a <= arr[i] && arr[i] <= b) {
+				resArr.push(arr[i]);
+			} 
+		}
+
+		return resArr;
+	}
+
+	var arr = [5, 4, 3, 8, 0];
+
+	var filtered = filterRange(arr, 3, 5);
+	// теперь filtered = [5, 4, 3]
+	// arr не изменился
+
+	console.log(arr);
+	console.log(filtered);
+
+	</script>
+</body>
+
+</html>

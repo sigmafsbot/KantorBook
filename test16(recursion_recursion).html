@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+	<!-- <script src="script1.js"></script> -->
+
+	<script>
+	function sumTo(num) {
+		if (num > 1) {
+			return num + sumTo(num-1); 	
+		} else {
+			return num;
+		}
+	}
+
+	alert(sumTo(+prompt('Enter number')));
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+	<!-- <script src="script1.js"></script> -->
+
+	<script>
+		function randomRangeMax(max) {
+			return Math.random()*max;
+		}
+
+		// a = start, b = end
+		function randomRangeMinMax(min, max) {
+			return min + Math.random()*(max-min);
+		}
+
+		function randomIntegerMinMax(min, max) {
+			return Math.floor(min + Math.random() * (max + 1 - min));
+		}
+
+		// alert(randomRangeMax(200));
+		// alert(randomRangeMinMax(100,200));
+		alert(randomIntegerMinMax(100, 200));
+
+	</script>
+</body>
+
+</html>

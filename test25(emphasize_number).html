@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+	<!-- <script src="script1.js"></script> -->
+
+	<script>
+		function extractCurrencyValue(str) {
+			return str[0] == '$' ? +str.slice(1) : 'That\'s not a price in dollars';
+		}
+
+		alert(extractCurrencyValue('1$120.4342'));
+	</script>
+</body>
+
+</html>
