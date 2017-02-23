@@ -11,10 +11,29 @@
 		"use strict"
 
 		// reduce надо использовать
-
+		// см коммент http://learn.javascript.ru/array-iteration#comment-3159720528
+		// Основное предназначение метода reduce - свести массив к одному значению. Всё остальное уже на совести
+		
 		function getSums(arr) {
-			arr.reduce
+			var result = [];
+			if (!arr.length) return result;
+
+			var totalSum = arr.reduce(function(prev, currItem) {
+				result.push(prev);
+				return prev + currItem;
+			});
+
+			result.push(totalSum);
+
+			return result;
 		}
+
+		// ПОПРОБОВАТЬ НАПИСАТЬ ИСПОЛЬЗУЯ index в reduce функции !
+
+		var arr = [ 1, 2, 3, 4, 5 ]
+
+		console.log(getSums(arr));
+		console.log(getSums([-2,-1,0,1]));
 
 	</script>
 </body>
