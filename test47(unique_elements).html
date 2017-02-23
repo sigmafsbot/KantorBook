@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+	<!-- <script src="script1.js"></script> -->
+	<script>
+		"use strict"
+		
+		/* 	МЕДЛЕННОЕ РЕШЕНИЕ ПЕРЕБОРОМ  (можно также и arr.indexOf, он также ищёт перебором)
+		function unique(arr) {
+			var result = [];
+
+			nextiter: 
+				for (var i = 0; i < arr.length; i++) {
+				var str = arr[i];
+					for (var j = 0; j < result.length; j++) {
+						if (result[j] == str) continue nextiter;
+					}
+				result.push(str);
+			}
+
+			return result;
+		}
+
+		var strings = ["кришна", "кришна", "харе", "харе",
+  			"харе", "харе", "кришна", "кришна", "8-()"
+  		];
+  	*/
+
+  	/* БЫСТРОЕ РЕШЕНИЕ С ПОМОЩЬЮ ОБЪЕКТА */
+		function unique(arr) {
+			var store = {};
+
+			for (var i = 0; i < arr.length; i++){
+				var key = arr[i];
+				if (!store[key]) store[key] = true; // можно просто store[key] = true; т.к. имена ключей в объекте (имена свойств объекта) уникальны
+			}
+			return Object.keys(store);
+		}
+
+		var strings = ["кришна", "кришна", "харе", "харе",
+  			"харе", "харе", "кришна", "кришна", "8-()"
+  		];
+
+  		alert(unique(strings));
+
+	</script>
+</body>
+
+</html>

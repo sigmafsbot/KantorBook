@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+	<!-- <script src="script1.js"></script> -->
+	<script>
+		"use strict"
+		
+		// * http://learn.javascript.ru/array-methods#отфильтровать-анаграммы
+		// приводить слова к виду массива символов и отсортировать их. Тогда можно будет сравнивать массивы
+		function aclean(arr) {
+			var words = [];
+			var store = {};
+
+
+			for (var i = 0; i < arr.length; i++) {
+				var key = arr[i].toLowerCase().split('').sort();
+				if (!store[key]) {
+					store[key] = true;
+					words.push(arr[i]);
+				}
+			}
+
+			return words;
+			// return Object.keys(store);
+		}
+
+		var arr = ["воз", "киборг", "корсет", "ЗОВ", "гробик", "костер", "сектор"];
+
+		alert( aclean(arr) );
+
+	</script>
+</body>
+
+</html>
