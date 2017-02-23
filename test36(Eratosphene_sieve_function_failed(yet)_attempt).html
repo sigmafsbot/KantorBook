@@ -9,7 +9,7 @@
 	<!-- <script src="script1.js"></script> -->
 	<script>
 		"use strict"
-
+ 		// step 1
 		function generateArray(n) {
 			var arr = [];
 			for (var i = 2; i <= n; i++) {
@@ -17,38 +17,37 @@
 			}
 		return arr;
 		}
+		// step 2
+		var p = 2
 
-		function findPrimes(n) {
+		// step 3
+		var primes = function findPrimes(n) {
 			var arr = generateArray(n);
-			var p = 2;
-			// var index = arr.indexOf(p);
-			
-			for (var i = 1; i <= n; i++) {
-				if (arr[i] % p == 0) {
-					arr.splice(i, 1);
+			do {
+				for (var i = 2*p; i <= n; i+=p) {
+					arr[i] = 0;
 				}
-			}
 
-
-			/*
-			while (p**2 < n) {
-				// for (var i = p+p; i <= n; i+=p) {
-					for (p; p <= n; p * 2) {
-						if (index) {
-						arr.splice(index, 1);
-					}
+				for (var i = p + 1; i <= n; i++) {
+					if (arr[i]) break;
 				}
-				console.log(p);
-				p = arr[index+1];
-			}	// while (p**2 < n) {
-				// if (indexOf(p)
-			// }
-			*/
+
+				p = i;
+			} while (p * p < n);
 
 			return arr;
 		}
 
-		console.log(findPrimes(100));
+		function sum(arr) {
+			var result = 0;
+			for (var i = 0; i < arr.length; i++) {
+				result += arr[i];
+			}
+			return result;
+		}
+
+		// console.log(findPrimes(100));
+		console.log(sum(primes(100)));
 	</script>
 </body>
 

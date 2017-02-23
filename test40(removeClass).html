@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+	<!-- <script src="script1.js"></script> -->
+	<script>
+		"use strict"
+
+		function removeClass(obj, cls) {
+			var arr = obj.className.split(' ');
+
+			for (var i = 0; i < arr.length; i++) {
+				if (arr[i] == cls) {
+					arr.splice(i, 1);
+					i--; // (*)
+			}
+
+			obj.className = arr.join(' ');
+		};
+
+		/* (*) Элементы массива проверяются один за другим. При вызове splice удаляется текущий, i-й элемент, и те элементы, которые идут дальше, сдвигаются на его место.
+		Таким образом, на месте i оказывается новый, непроверенный элемент.
+		Чтобы это учесть, строчка (*) уменьшает i, чтобы следующая итерация цикла заново проверила элемент с номером i. Без нее функция будет работать с ошибками. */
+
+		var obj = {
+			className: 'open menu'
+		};
+
+		removeClass(obj, 'open'); // obj.className='menu'
+		removeClass(obj, 'blabla'); // без изменений (нет такого класса)
+
+	</script>
+</body>
+
+</html>
+

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+	<!-- <script src="script1.js"></script> -->
+	<script>
+		"use strict"
+
+		function compareNumeric(a, b) {
+			return b - a; // в обратном порядке
+			// return a - b; // в обычном порядке
+		}
+
+		var arr = [5, 2, 1, -10, 8];
+
+	// отсортируйте?
+
+		arr.sort(compareNumeric)
+
+		alert( arr ); // 8, 5, 2, 1, -10
+
+
+	</script>
+</body>
+
+</html>
+

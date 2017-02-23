@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+	<!-- <script src="script1.js"></script> -->
+	<script>
+		"use strict"
+
+		var obj = {
+			className: 'open menu'
+		}
+
+
+
+		function addClass(obj, text) {
+			var items = obj.className ? obj.className.split(' ') : [];
+
+			for (var i = 0; i < items.length; i++) {
+				if (items[i] == text) return
+			}
+
+			items.push(text);
+
+			obj.className = items.join(' ');
+		}
+
+		addClass(obj, 'new'); // obj.className='open menu new'
+		addClass(obj, 'open'); // без изменений (класс уже существует)
+		addClass(obj, 'me'); // obj.className='open menu new me'
+		addClass(obj, 'menu');
+		addClass(obj, 'menu');
+
+		alert( obj.className ); // "open menu new me"
+		console.log( obj.className );
+	</script>
+</body>
+
+</html>
+

@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+	<!-- <script src="script1.js"></script> -->
+	<script>
+		"use strict"
+
+		function camelize(str) {
+			var arr = str.split('-');
+			var up = '';
+
+			for (var i = 1; i < arr.length; i++) {
+				arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+			}
+
+			return arr.join('');
+		}
+
+		alert(camelize('list-style-image'));
+		alert(camelize("-webkit-transition"));
+		alert(camelize("background-color"));
+
+	</script>
+</body>
+
+</html>
+

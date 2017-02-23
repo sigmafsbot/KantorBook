@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+	<!-- <script src="script1.js"></script> -->
+	<script>
+		"use strict"
+		var arr = [1, 2, 3, 4, 5];
+
+		arr.sort(function(a, b) { return Math.random() - 0.5 }); // чтобы область знчений была [-0.5 ... 0.5] вместо [0 ... 1]
+		// по идее Math.random() - Math.random() тоже должно работать.
+
+		alert( arr ); // элементы в случайном порядке, например [3,5,1,2,4]
+
+	</script>
+</body>
+
+</html>
+
