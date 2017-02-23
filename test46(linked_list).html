@@ -23,42 +23,57 @@
 		  }
 		};
 
-		/* USING CYCLE */
-		// function printList(list) {
-		// 	var pos = list;
+		/* USING LOOP */
+		function printList(list) {
+			var pos = list;
 
-		// 	while (pos) {
-		// 		console.log(pos.value);
-		// 		pos = pos.next;
-		// 	}
-		// }
+			while (pos) {
+				console.log(pos.value);
+				pos = pos.next;
+			}
+		}
 
 
 		/* RECURSIVE */ 
-		// function printListRecursive(list) {
-		// 	while (list) {
-		// 		console.log(list.value);
-		// 		list = printListRecursive(list.next);
-		// 	}
-		// }
-		var arr = [];
+ 		function printListRecursive(list) {
+ 			console.log(list.value)
+
+ 			if (list.next) {
+ 				printListRecursive(list.next);
+ 			}
+ 		}
+
+		/* RECURSIVE REVERSE */
 		function printReverseListRecursive(list) {
-			if (list) {arr.splice(arr.length, 0, list.value)};
-      
-			while (list) {
-			  
-				list = printReverseListRecursive(list.next);
+			if (list.next) {
+				printReverseListRecursive(list.next)
 			}
-			
+
+			console.log(list.value)
 		}
 
+		/* LOOP REVERSE */
+		function printReverseList(list) {
+			var pos = list;
+			var arr = [];
+
+			while (pos) {
+				arr.push(pos.value);
+				pos = pos.next;
+			}
+
+			// arr.sort(function(a,b) {return b - a});
+			// console.log(arr);
+			for (var i = arr.length - 1; i >= 0; i--) {
+				console.log(arr[i]);
+			}
+		}
 
 		
 		// printList(list);
 		// printListRecursive(list);
-		printReverseListRecursive(list);
-
-		alert(arr);
+		// printReverseListRecursive(list);
+		printReverseList(list);
 	</script>
 </body>
 
