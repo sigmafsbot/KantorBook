@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+	
+
+<body>
+	<script>
+	var date = new Date(2012,0,3);
+
+	function getWeekDay(date) {
+		return date.toLocaleString("ru", {weekday: 'short'})
+	}
+
+	// для старых браузеров без поддержки .toLocaleString
+	// function getWeekDay(date) {
+	//   var days = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+
+	//   return days[date.getDay()];
+	// }
+
+	// var date = new Date(2014, 0, 3); // 3 января 2014
+
+	alert( getWeekDay(date) ); // должно вывести 'вт'
+
+	</script>
+</body>
+
+</html>

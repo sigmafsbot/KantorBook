@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+	
+
+<body>
+	<script>
+	var date = new Date(2012, 0, 3);  // 3 янв 2012
+
+	function getLocalDay(date) {
+		var day = date.getDay();
+
+		if (day == 0) {
+			day = 7;
+		}
+
+		return day; // или day - 1 если хотим чтобы день недели начинался с нуля
+
+	}
+
+	alert( getLocalDay(date) );       // вторник, выведет 2
+	</script>
+</body>
+
+</html>

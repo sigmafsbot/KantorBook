@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+	
+
+<body>
+	<script>
+	"use strict"
+
+	function sum(a) {
+		var currentSum = a;
+
+		function f(b) {
+			currentSum += b;
+			return f;   // Здесь нет рекурсивного вызова! Он был бы если бы return f(); функция
+		}             // не вызывает сама себя, а возвращает ссылку на себя
+
+		f.toString = function () {
+			return currentSum;
+		}
+
+		return f;
+	}
+
+	sum(1)(2) == 3; // 1 + 2
+	sum(1)(2)(3) == 6; // 1 + 2 + 3
+	sum(5)(-1)(2) == 6
+	sum(6)(-1)(-2)(-3) == 0
+	sum(0)(1)(2)(3)(4)(5) == 15
+
+	alert(sum(0)(1)(2)(3)(4)(5));
+
+	</script>
+</body>
+
+</html>

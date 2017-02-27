@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+	
+
+<body>
+	<script>
+		function formatDate(date) {
+			var formatter = new Intl.DateTimeFormat("ru", {
+				day: '2-digit',
+				month: '2-digit',
+				year: '2-digit',
+				});
+			return formatter.format(date);
+		}
+
+		/* РЕШЕНИЕ ИЗ УЧЕБНИКА 
+		function formatDate(date) {
+
+		  var dd = date.getDate();
+		  if (dd < 10) dd = '0' + dd;
+
+		  var mm = date.getMonth() + 1;
+		  if (mm < 10) mm = '0' + mm;
+
+		  var yy = date.getFullYear() % 100;
+		  if (yy < 10) yy = '0' + yy;
+
+		  return dd + '.' + mm + '.' + yy;
+		}
+		*/
+
+
+		var d = new Date(2014, 0, 30); // 30 jan 2014
+		var e = new Date(2001, 0, 1);
+
+		alert( formatDate(d) ); // '30.01.14'
+		alert( formatDate(e) );
+
+	</script>
+</body>
+
+</html>

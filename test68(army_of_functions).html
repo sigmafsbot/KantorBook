@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+	
+
+<body>
+	<script>
+	"use strict"
+
+	function makeArmy() {
+
+ 		var shooters = [];
+
+ 	// РЕШЕНИЕ ЧЕРЕЗ ПРИВЯЗКУ СВОЙСТВА К ФУНКЦИИ (поэтому не прокатит с анонимной функцией)
+  	// for (var i = 0; i < 10; i++) {
+    //   var shooter = function me() { // функция-стрелок
+    //	   alert( me.i ); // выводит свой номер 
+    // 	 };
+    //
+    //	 shooter.i = i;
+   	//	 shooters.push(shooter);
+  	// }
+
+	// РЕШЕНИЕ ЧЕРЕЗ ДОП. ФУНКЦИЮ
+
+		for (var i = 0; i < 10; i++) {	
+			var shooter = (function(x) {
+		  		return function() {
+		    		alert( x );
+		  		};
+			})(i);
+
+			shooters.push(shooter);
+		}
+
+
+	// ОБЕРНУТЬ ВЕСЬ ЦИКЛ ВО ВРЕМЕННУЮ ФУНКЦИЮ
+	// for (var i = 0; i < 10; i++)(function(i) {
+
+	//     var shooter = function() {
+	//       alert( i );
+	//     };
+
+	//     shooters.push(shooter);
+
+	//   })(i);
+
+	// С ПОМОЩЬЮ let ВМЕСТО var
+    //
+	// Всего лишь и только в цикле "for (var i = 0; i < 10; i++)" изменяем `var` на `let`. 
+	//Это приводит к тому, что лексическое окружение само пересоздается для каждой итерации цикла.
+
+	// ЕЩЁ ОДИН ВАРИАНТ РЕШЕНИЯ
+	// for (var i = 0; i < 10; i++) {
+	//     var shooter = new Function('alert(' + i + ');');
+	//     shooters.push(shooter);
+	//   }
+	//'alert(' + i + ');' - вот здесь текущее i записывается в строку не дожидаясь окончания цикла в итоге у каждой функции будет корректная строка
+
+  		return shooters;
+	}
+
+
+
+	// ОБЕРНУТЬ ВЕСЬ ЦИКЛ
+
+	var army = makeArmy();
+
+	army[0](); // стрелок выводит 10, а должен 0
+	army[5](); // стрелок выводит 10... 
+	// .. все стрелки выводят 10 вместо 0,1,2...9
+	// выводит так потому что в LexicalEnvironment функции makeArmy() по окончанию работы 
+	// i = 10 
+
+	</script>
+</body>
+
+</html>

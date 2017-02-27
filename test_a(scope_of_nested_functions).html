@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+	
+
+<body>
+	<script>
+	var a = 'a';
+	var b = 'b';
+	var c = 'c';
+
+	function print() {
+		// console.log(a);
+		function printA() {
+			function printB() {
+				return console.log(a);
+			}
+		return printB();
+		}
+	return printA();
+	}
+
+	print();
+
+	</script>
+</body>
+
+</html>

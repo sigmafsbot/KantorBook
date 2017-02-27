@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+	
+
+<body>
+	<script>
+	"use strict"
+
+	var calculator = {
+
+		read: function() {
+			this.a = +prompt('Please enter first number: ', 0);
+			this.b = +prompt('Please enter second number: ', 0);
+		},
+
+		sum: function() {
+			return this.a + this.b;
+		},
+
+		mul: function() {
+			return this.a * this.b;
+		}
+	}
+
+	calculator.read();
+	alert( calculator.sum() );
+	alert( calculator.mul() );
+
+	var test = calculator;
+	calculator = null;
+
+	test.read();
+	alert( test.sum() );
+	alert( test.mul() );
+
+	</script>
+</body>
+
+</html>

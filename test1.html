@@ -4,9 +4,31 @@
 <head>
   <meta charset="utf-8">
 </head>
+	
 
 <body>
 	<script src="script1.js"></script>
+	<script>
+		var start = new Date; // засекли время
+
+		// что-то сделать
+		result = 0;
+		function sum(n) {
+			while (n > 0) {
+			  n -= 1;
+				result += sum(n-1);
+		    }
+			return result;
+		}
+
+		console.log("sum is: " + sum(1000));
+
+		var end = new Date; // конец измерения
+
+		console.log( "Цикл занял " + (end - start) + " ms" );
+
+
+	</script>
 </body>
 
 </html>

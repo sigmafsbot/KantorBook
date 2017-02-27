@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+	
+
+<body>
+	<script>
+	var date = new Date(2015, 0, 2);
+
+	function getDateAgo(date, days) {
+		var dateCopy = new Date(date);
+		// dateCopy.setDate(date.getDate() - days); // если здесь в начале будет x = dateCopy.setDate.... то пребразуется в unix timestamp
+
+		
+/*var x =*/dateCopy.setDate(date.getDate() - days); //TESTING В результате выполнения функция setDate() изменяет текущий объект (Date) и возвращает количество миллисекунд от начала эпохи (1 января 1970 00:00:00 UTC) для полученного значения объекта. Поэтому здесь x = 12342141249149 количество милисекунд.
+
+		// console.log(x);
+		// console.log(dateCopy);
+		// console.log(typeof(x));
+		// console.log(typeof(dateCopy));
+
+		// return dateCopy.toString(); // это преобразует формат даты в читаемый вид
+		return dateCopy.getDate();
+	}
+
+	alert( getDateAgo(date, 1) ); // 1, (1 января 2015)
+	alert( getDateAgo(date, 2) ); // 31, (31 декабря 2014)
+	alert( getDateAgo(date, 365) ); // 2, (2 января 2014)
+
+	</script>
+</body>
+
+</html>

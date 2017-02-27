@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+	
+
+<body>
+	<script>
+	"use strict"
+	var users = [{
+	  name: "Вася",
+	  surname: 'Иванов',
+	  age: 20
+	}, {
+	  name: "Петя",
+	  surname: 'Чапаев',
+	  age: 25
+	}, {
+	  name: "Маша",
+	  surname: 'Медведева',
+	  age: 18
+	}];
+
+
+	function byField(field) {
+		return function(a,b) {
+			return a[field] > b[field] ? 1 : -1;  // тут обращение типа users[0]['name'] КАВЫЧКИ ВАЖНЫ!!! 
+			// почему не работает return a.field > b.field ? 1 : -1; ??? ПОТОМУ ЧТО ПЕРЕДАЁТСЯ СТРОКА В КАВЫЧКАХ
+			// users[0].'name' VM1124:1 Uncaught SyntaxError: Unexpected string
+		};
+	}; 
+
+	users.sort(byField('name'));
+	users.forEach(function(user) {
+  	alert( user.name )});  // Вася, Маша, Петя
+
+  	users.sort(byField('age'));
+	users.forEach(function(user) {
+ 	 alert( user.name );
+	}); // Маша, Вася, Петя
+
+	</script>
+</body>
+
+</html>
