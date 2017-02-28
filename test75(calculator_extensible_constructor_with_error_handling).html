@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+	
+
+<body>
+	<script>
+	"use strict"
+
+	function Calculator() {
+
+		this.calculate = function(str) {
+			var elems = str.split(' ');
+			var result = this.operators[elems[1]](+elems[0], +elems[2]);
+			if (result == NaN) {// || result == undefined || result == null) {
+				alert('You have entered wrong operands!');
+			} else {
+				return result;
+			}			
+			// ... сюда код из массива
+		}
+
+		this.operators = { 
+			'+': function(a,b) { return a + b},
+			'-': function(a,b) { return a - b},
+			// ... и потом с помощью addMethod добавлять сюда. Только мб вынести её за пределы .calculate метода
+		}
+		
+
+
+		this.addMethod = function(name, func) {
+			this.operators.name = name;
+			this.operators[name] = func;
+		}
+		// ОСТАЛОСЬ ОБРАБОТКУ ОШИБОК... лучше, наверное, вставить в addMethod если мы с нуля заполняем operators. Иначе в calculate 
+	}	
+
+	var calc = new Calculator;
+
+	alert( calc.calculate("3 + 7") ); // 10
+
+	var powerCalc = new Calculator;
+	powerCalc.addMethod("*", function(a, b) {
+	  return a * b;
+	});
+	powerCalc.addMethod("/", function(a, b) {
+	  return a / b;
+	});
+	powerCalc.addMethod("**", function(a, b) {
+	  return Math.pow(a, b);
+	});
+
+	var resultPow = powerCalc.calculate("2 ** b");
+	alert( resultPow ); // 8
+
+	var resultMult = powerCalc.calculate("2 * 3"); 
+	alert( resultMult ); // 6
+
+	var resultDiv = powerCalc.calculate("2 / 3");
+	alert ( resultDiv ); // 0.666666
+
+
+
+	// var math_it_up = {
+ //    '+': function (x, y) { return x + y },
+ //    '-': function (x, y) { return x - y }
+	// }​​​​​​​;
+
+	// math_it_up['+'](1, 2) == 3;
+
+	// или использовать eval - но это не сильно хорошая практика
+
+
+	</script>
+</body>
+
+</html>
