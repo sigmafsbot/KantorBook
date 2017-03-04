@@ -14,11 +14,14 @@
 
 		this.calculate = function(str) {
 			var elems = str.split(' ');
-			var result = this.operators[elems[1]](+elems[0], +elems[2]);
-			if (result == NaN) {// || result == undefined || result == null) {
-				alert('You have entered wrong operands!');
+			var a = +elems[0],
+				op = elems[1],
+				b = +elems[2];
+
+			if (isNaN(a) || isNaN(b) || !this.operators[op]) {
+				return 'You have entered wrong operands!';
 			} else {
-				return result;
+				return this.operators[op](a, b);
 			}			
 			// ... сюда код из массива
 		}
@@ -32,8 +35,9 @@
 
 
 		this.addMethod = function(name, func) {
-			this.operators.name = name;
 			this.operators[name] = func;
+			// this.operators.name = name;
+			// this.operators[name] = func;
 		}
 		// ОСТАЛОСЬ ОБРАБОТКУ ОШИБОК... лучше, наверное, вставить в addMethod если мы с нуля заполняем operators. Иначе в calculate 
 	}	

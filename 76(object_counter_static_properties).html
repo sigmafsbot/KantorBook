@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+	
+
+<body>
+	<script>
+	"use strict"
+	function Article() {
+	  this.created = new Date();
+
+	  Article.total++;
+	  Article.lastDate = this.created;
+
+	  Article.showStats = function() {
+	  	alert('Всего: ' + this.total + ', Последняя: ' + this.lastDate);
+	  }
+
+	  Article.startCounter = function() {
+	  	return this.total = arguments.length == 1 ? arguments[0] : 0;
+	  }
+
+	}
+
+	Article.total = 0;
+
+	// Article.startCounter(); // здесь будет ошибка ...is not a function т.к. интерпретатор ещё ни разу не вызывал конструктор Article() и не видит его содержимого, в т.ч. метода startCounter()
+
+	new Article();
+	new Article();
+
+	// Article.startCounter(); // здесь уже можно вызывать
+
+	Article.showStats(); // Всего: 2, Последняя: (дата)
+
+	new Article();
+
+	Article.showStats(); // Всего: 3, Последняя: (дата)
+	
+
+	</script>
+</body>
+
+</html>
