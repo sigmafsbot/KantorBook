@@ -13,7 +13,6 @@
 	function Calculator() {
 
 		this.calculate = function(str) {
-
 			var elems = str.split(' '),
 				a = +elems[0],
 				op = elems[1],
@@ -24,7 +23,7 @@
 			if  (!operators[op] || isNaN(a) || isNaN(b)) {
 				return 'You have entered wrong operands! Please enter numbers';
 			}
-
+			
 			return result;	
 			// ... сюда код из массива
 		}
@@ -36,6 +35,8 @@
 		}
 
 		this.addMethod = function(name, func) {
+			// this.operators.name = name;
+			// this.operators[name] = func;
 			operators[name] = func;
 		}
 		// ОСТАЛОСЬ ОБРАБОТКУ ОШИБОК... лучше, наверное, вставить в addMethod если мы с нуля заполняем operators. Иначе в calculate 
