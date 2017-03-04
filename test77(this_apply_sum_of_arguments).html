@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+	
+
+<body>
+	<script>
+	"use strict"
+	function sumArgs() {
+		var argsArr = [].slice.call(arguments);
+
+		return argsArr.reduce(function(a,b) {
+			return a + b;
+		});
+	}
+
+	// РЕШЕНИЕ КАНТОРА №1
+	// 	function sumArgs() {
+	//   // скопируем reduce из массива
+	//   arguments.reduce = [].reduce;
+	//   return arguments.reduce(function(a, b) {
+	//     return a + b;
+	//   });
+	// }
+
+
+	// РЕШЕНИЕ КАНТОРА №2
+	// function sumArgs() {
+	//   // запустим reduce из массива напрямую
+	//   return [].reduce.call(arguments, function(a, b) {
+	//     return a + b;
+	//   });
+	// }
+
+	alert( sum([1, 2, 3]) + 'LoL'); // 6 (=1+2+3)
+	alert( sumArgs(1, 2, 3) );
+
+	</script>
+</body>
+
+</html>
