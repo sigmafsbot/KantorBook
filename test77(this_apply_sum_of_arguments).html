@@ -10,7 +10,7 @@
 	<script>
 	"use strict"
 	function sumArgs() {
-		var argsArr = [].slice.call(arguments);
+		var argsArr = [].slice.call(arguments); // делаем копию массива аргументов
 
 		return argsArr.reduce(function(a,b) {
 			return a + b;
@@ -26,6 +26,7 @@
 	//   });
 	// }
 
+	// по сути, arguments является псведомассивом ПОТОМУ ЧТО у него как раз нет некоторых методов. таким способом мы ему их добавляем (нужные)
 
 	// РЕШЕНИЕ КАНТОРА №2
 	// function sumArgs() {
