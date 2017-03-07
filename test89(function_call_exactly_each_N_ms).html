@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+  
+
+<body>
+  <script>
+  "use strict";
+
+  // можно также с помощью new Date miliseconds
+  function debounce(f, ms) {
+    
+    var state = null;   // можно и 0, по идее
+
+    var COOLDOWN = 1;  // константа, не меняем это значение
+
+    return function() {
+      if (state) return;
+
+      f.apply(this, arguments)
+
+      state = COOLDOWN;
+
+      setTimeout(function() { state = null }, ms)
+      }
+  }
+
+  // АЛЬТЕРНАТИВНОЕ РЕШЕНИЕ, ВРОДЕ ДАЖЕ ЛУЧШЕ
+  /*
+  Функция debounce. В учебнике обертка не возвращает результат вызова (undefined вместо значения). Здесь возвращает. [[Да, да, задача на использование setTimeout, знаю. Но так тоже работает и даже лучше.]]
+
+  function debounce(f, ms) {
+
+      var last = -Infinity;
+
+      return function () {
+          var now = Date.now();
+
+          if (now - last > ms) {
+              last = now;
+              return f.apply(this, arguments);
+          }
+      }
+  }
+  */
+
+  function f(x) {
+    alert( x );
+  }
+
+  var f = debounce(f, 1000);
+
+  f(1); // выполнится сразу же
+  f(2); // игнор
+
+  setTimeout( function() { f(3) }, 100); // игнор (прошло только 100 мс)
+  setTimeout( function() { f(4) }, 1100); // выполнится
+  setTimeout( function() { f(5) }, 1500); // игнор
+
+
+  </script>
+</body>
+
+</html>

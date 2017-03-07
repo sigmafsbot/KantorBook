@@ -10,9 +10,18 @@
 
 	<script>
 		function getDecimal(num) {
+			// return num > 0 ? (num % 1).toFixed(5) : (-num % 1).toFixed(5);
 			// return num - (num - Math.abs(num % 1));
-			return num > 0 ? (num % 1) : (-num % 1);
+			
+			// return num > 0 ? (num % 1) : (-num % 1); - ВОТ ЭТО ОРИГИНАЛЬНОЕ РЕШЕНИЕ, ниже доработки
+			var result = getDecimalLength(num); 
+			return num > 0 ? +result : -result;
 
+
+		}
+
+		function getDecimalLength(num) {
+			return (String(num).split('.')[1] || []);
 		}
 
 		alert(getDecimal(12.345));

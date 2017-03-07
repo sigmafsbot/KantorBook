@@ -16,10 +16,10 @@
 
 			nextiter: 
 				for (var i = 0; i < arr.length; i++) {
-				var str = arr[i];
-					for (var j = 0; j < result.length; j++) {
-						if (result[j] == str) continue nextiter;
-					}
+				  var str = arr[i];
+				  for (var j = 0; j < result.length; j++) {
+					  if (result[j] == str) continue nextiter;
+				}
 				result.push(str);
 			}
 
@@ -36,7 +36,7 @@
 			var store = {};
 
 			for (var i = 0; i < arr.length; i++){
-				var key = arr[i];
+			  var key = arr[i];
 				if (!store[key]) store[key] = true; // можно просто store[key] = true; т.к. имена ключей в объекте (имена свойств объекта) уникальны
 			}
 			return Object.keys(store);

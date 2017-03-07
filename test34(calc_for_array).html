@@ -12,7 +12,7 @@
 
 		while (true) {
 			var input = prompt('Please enter a number: ', '');
-			if (input == '' || isNaN(input)) break;
+			if (input === '' || isNaN(input) || input === null) break;
 			
 			arr.push(input);
 			console.log(arr);
@@ -22,6 +22,11 @@
 		for (var i in arr) {
 			sum += +arr[i];
 		}
+
+		//var sum = 0;
+		// for (var i = 0; i < arr.length; i++) {
+		//   sum += arr[i];
+		// }
 
 		alert(sum);
 	</script>

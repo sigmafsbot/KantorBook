@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+  
+
+<body>
+  <script>
+  "use strict";
+
+  function Machine(power) {
+    this._power = power;
+    this._enabled = false;
+
+    var self = this;
+
+    this.enable = function() {
+      self._enabled = true;
+    };
+
+    this.disable = function() {
+      self._enabled = false;
+    };
+  }
+
+  function Fridge(power) {
+    Machine.apply(this, arguments);  // наследуем свойства и методы класса-родителя
+
+    var food = [];      // массив еды, приватное свойство
+    var capacity = this._power / 100;  // ёмкость холодильника
+
+    this.addFood = function() {
+      if (!this._enabled) {
+        throw new Error('Холодильник выключен. Добавление еды невозможно.');
+      } 
+      if (food.length + arguments.length > capacity) {
+        throw new Error('Холодильник переполнен.');
+      }
+
+      for (var i = 0; i < arguments.length; i++) {
+        food.push(arguments[i]);
+      }
+    };
+
+    this.getFood = function() { 
+      return food.slice();  // копируем еду в новый массив, чтобы манипуляции с ним не меняли food
+    };
+
+    this.filterFood = function(func) {
+      return food.filter(func);
+    };
+
+    // удаляем конкретный элемент из массива
+    // http://stackoverflow.com/questions/3954438/remove-item-from-array-by-value
+    this.removeFood = function(item) {
+      var index = food.indexOf(item);
+      if (~index) {              //  Если элемент не находится, возвращается -1. Бинарное НЕ преобразует к 0  
+        food.splice(index, 1);   // удаление элемента с конца массива - pop(), с начала - shift(), 
+      }                          // из середины - splice()
+    };
+
+    // изменяем унаследованный метод disable
+    var inheritedDisable = this.disable;
+    this.disable = function() {
+      // inheritedDisable.call(this);
+      if (food.length) {
+        throw new Error('Нельзя отключить. В холодильнике есть еда.');
+      }
+      inheritedDisable();     // можно inheritedDisable.call(this), но мы передали контекст с помощью self, так что нет нужды
+      alert("Холодильник выключен"); 
+      alert(this._enabled);  // false 
+    }
+
+  }
+
+  var fridge = new Fridge(500);
+  fridge.enable();
+  fridge.addFood("кус-кус");
+  // fridge.disable(); // ошибка, в холодильнике есть еда
+  fridge.removeFood("кус-кус");
+  fridge.disable();
+
+
+  </script>
+</body>
+
+</html>

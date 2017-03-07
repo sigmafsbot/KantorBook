@@ -25,7 +25,9 @@
 	};
 
 
-	var buffer = makeBuffer(); // создание объекта
+	var buffer = makeBuffer(); // создание объекта; если быть точным, функции, имеющей [[Scopes]] = 1. Closure (makeBuffer), 2. Global (window)
+
+	// alert(typeof buffer);
 
 	buffer('Замыкания');
 	buffer(' Использовать');

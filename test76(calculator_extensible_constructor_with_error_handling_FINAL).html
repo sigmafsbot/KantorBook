@@ -28,7 +28,7 @@
 			// ... сюда код из массива
 		}
 
-		var operators = {    // здесь без this
+		var operators = {    // здесь без this, хранится в closure Calculator()
 			'+': function(a,b) { return a + b},
 			'-': function(a,b) { return a - b},
 			// ... и потом с помощью addMethod добавлять сюда. Только мб вынести её за пределы .calculate метода
@@ -43,10 +43,13 @@
 	}	
 
 	var calc = new Calculator;
-
+	
 	alert( calc.calculate("3 + 7") ); // 10
 
 	var powerCalc = new Calculator;
+	// Calculator = null; // - таким образом мы удаляем не сам конструктор, а ССЫЛКУ на него.
+	// конструктор продолжит существовать в памяти пока на него ссылается calc
+
 	powerCalc.addMethod("*", function(a, b) {
 	  return a * b;
 	});

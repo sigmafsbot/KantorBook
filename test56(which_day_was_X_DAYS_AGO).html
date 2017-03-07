@@ -12,9 +12,9 @@
 
 	function getDateAgo(date, days) {
 		var dateCopy = new Date(date);
-		// dateCopy.setDate(date.getDate() - days); // если здесь в начале будет x = dateCopy.setDate.... то пребразуется в unix timestamp
 
-		
+
+		// dateCopy.setDate(date.getDate() - days); // если здесь в начале будет x = dateCopy.setDate.... то пребразуется в unix timestamp		
 /*var x =*/dateCopy.setDate(date.getDate() - days); //TESTING В результате выполнения функция setDate() изменяет текущий объект (Date) и возвращает количество миллисекунд от начала эпохи (1 января 1970 00:00:00 UTC) для полученного значения объекта. Поэтому здесь x = 12342141249149 количество милисекунд.
 
 		// console.log(x);

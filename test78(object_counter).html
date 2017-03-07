@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+	
+
+<body>
+	<script>
+	"use strict"
+  /* Добавить в конструктор Article: 
+  1. Подсчёт общего количества созданных объектов.
+  2.Запоминание даты последнего созданного объекта.
+  Используйте для этого статические свойства.
+  Пусть вызов Article.showStats() выводит то и другое.*/
+
+	function Article() {
+	  this.created = new Date();
+	  Article.counter++;  // увеличиваем счетчик при каждом вызове
+	  Article.lastdate = this.created;  // и запоминаем дату
+	}
+
+	Article.counter = 0; // начальное значение
+  // (нельзя оставить undefined, т.к. Article.count++ будет NaN)
+  // также нельзя добавлять в таком виде в тело конструктора, иначе при каждом вызове new Article() будет обнуляться счётчик. Можно заменить на что-то вроде if (Article.counter === undefined) Article.counter = 0 и затем просто counter++
+
+
+	// Article.showStats = function() {
+	//    		  	alert('Всего: ' + Article.counter + ', Последняя: ' + Article.lastdate);
+	//   }
+
+	//единственное отличие - в решении Кантора не Article.counter, Article.lastdate, a this:
+	// потому что "Article.showStats", и за this берётся Article
+	// но какая принципиальная разница?
+	Article.showStats = function() {
+  	alert( 'Всего: ' + this.counter + ', Последняя: '+ this.lastdate );
+	};
+	// и зачем это выносить из тела конструктора?
+	
+
+	new Article();
+	new Article();
+
+	Article.showStats(); // Всего: 2, Последняя: (дата)
+
+	new Article();
+
+	Article.showStats(); // Всего: 3, Последняя: (дата)
+	
+
+	</script>
+</body>
+
+</html>

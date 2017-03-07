@@ -44,7 +44,7 @@
 		/* Another sufficient way */
 
 		function sum() {
-   		return Array.prototype.reduce.call(
+   		return Array.prototype.reduce.call(  // также можно [].reduce.call, это одно и то же
      		arguments,
      		function(prev, cur) {
         	return prev + cur;

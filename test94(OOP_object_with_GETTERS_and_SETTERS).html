@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+  
+
+<body>
+  <script>
+  "use strict";
+
+  function User() {
+    
+    var firstname, surname;   // (1)
+
+    this.setFirstName = function(name) {
+      firstname = name;
+    }
+
+    this.setSurname = function(sName) { // если здесь в качестве аргумента указать surname, то передаваться будет не аргумент типа user.setSurname("Иванов"), а объявленная в строке (1) переменная, равная undefined
+      surname = sName;          
+    }
+
+    this.getFullName = function() {
+      return firstname + ' ' + surname;
+    }
+  }
+
+  var user = new User();
+  user.setFirstName("Петя");
+  user.setSurname("Иванов");
+
+  alert( user.getFullName() );
+
+
+  // Обратим внимание, что для «геттера» getFullName нет соответствующего свойства объекта, он конструирует ответ «на лету». Это нормально. Одна из целей существования геттеров/сеттеров – как раз и есть изоляция внутренних свойств объекта, чтобы можно было их как угодно менять, генерировать «на лету», а внешний интерфейс оставался тем же.
+
+  </script>
+</body>
+
+</html>

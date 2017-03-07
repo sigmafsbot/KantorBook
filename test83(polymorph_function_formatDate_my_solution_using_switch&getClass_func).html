@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+  
+
+<body>
+  <script>
+"use strict";
+
+  function formatDate(date) {
+    // var result = '';
+    var dateType = getClass(date);
+
+
+    function beautify(dateObj) {
+      var formatter = new Intl.DateTimeFormat("ru", {
+        day: '2-digit',
+        month: '2-digit',
+        year: '2-digit',
+        });
+      return formatter.format(dateObj);
+    }
+
+    switch(dateType) {
+      case 'string':
+        return beautify(new Date(date));
+        // date = date.split('-');
+        // var year = date[0].slice(-2),
+        //     month = ('0' + date[1]).slice(-2),
+        //     day = ('0' + date[2]).slice(-2)
+        // result = day + '.' + month + '.' + year;  // здесь лучше .join('.');
+        break;
+      
+      case 'number':
+        return beautify(new Date(date * 1000));
+        break;
+
+      case 'array':
+        return beautify(new Date(date[0], date[1], date[2]));
+        break;
+
+      case 'date':
+        return beautify(date);
+        break;
+    }
+  }
+
+    // секунды http://stackoverflow.com/questions/4631928/convert-utc-epoch-to-local-date-with-javascript
+
+  function getClass(obj) {
+    return {}.toString.call(obj).slice(8, -1).toLowerCase();
+  }
+
+  alert( formatDate('2011-10-02') ); // 02.10.11
+  alert( formatDate(1234567890) ); // 14.02.09 // СЕКУНДЫ, а не милисекунды => * 1000
+  alert( formatDate([2014, 0, 1]) ); // 01.01.14 // new Date(arr[0], arr[1], arr[2]);
+  alert( formatDate(new Date(2014, 0, 1)) ); // 01.01.14
+
+  </script>
+</body>
+
+</html>

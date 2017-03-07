@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+	
+
+<body>
+	<script>
+  "use strict";
+
+  function work(a) {
+    // console.log(a); //неверно
+  }
+
+  // тело декоратора, f - функция, log - массив
+  // function makeLogging(f, log) {
+  //   return function() {
+  //     log.push(arguments[0]);
+  //     return f.call(this, arguments) // строчка ответственна за передачу вызова; 
+  //     // 1 аргумент, поэтому можно call, а не apply
+  //   }
+  // }
+
+  // РЕШЕНИЕ КАНТОРА
+  function makeLogging(f, log) {
+
+    function wrapper(a) {
+        log.push(a);
+        return f.call(this, a);
+      }
+
+    return wrapper;
+  }
+  /* Обратите внимание, вызов функции осуществляется как f.call(this, a), а не просто f(a).
+  Передача контекста необходима, чтобы декоратор корректно работал с методами объекта. Например:
+
+      user.method = makeLogging(user.method, log);
+
+  Теперь при вызове user.method(...) в декоратор будет передаваться контекст this, который надо передать исходной функции через call/apply. */
+
+  var log = [];
+  work = makeLogging(work, log);
+
+  work(1); // 1, добавлено в log
+  work(5); // 5, добавлено в log
+
+  console.log(log);
+
+  for (var i = 0; i < log.length; i++) {
+    alert( 'Лог:' + log[i] ); // "Лог:1", затем "Лог:5"
+  }
+
+	</script>
+</body>
+
+</html>

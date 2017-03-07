@@ -31,7 +31,7 @@
 	};
 
 
-	var buffer = makeBuffer(); // создание объекта
+	var buffer = makeBuffer(); // создание объекта; если быть точным, функции, имеющей [[Scopes]] = 1. Closure (makeBuffer), 2. Global (window)
 
 	buffer("Тест");
 	buffer(" тебя не съест ");

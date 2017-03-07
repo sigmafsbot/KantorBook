@@ -8,24 +8,28 @@
 <body>
 	<!-- <script src="script1.js"></script> -->
 	<script>
+	/*2		3		5		7		11		13		17		19		23		29
+31		37		41		43		47		53		59		61		67		71
+73		79		83		89		97 */
 		"use strict"
  		// step 1
 		function generateArray(n) {
 			var arr = [];
 			for (var i = 2; i <= n; i++) {
-				arr.push(i);
+				arr[i] = true; 
 			}
 		return arr;
 		}
 		// step 2
-		var p = 2
+		
 
 		// step 3
-		var primes = function findPrimes(n) {
+		function findPrimes(n) {
+			var p = 2;
 			var arr = generateArray(n);
 			do {
-				for (var i = 2*p; i <= n; i+=p) {
-					arr[i] = 0;
+				for (var i = 2 * p; i <= n; i += p) {
+					arr[i] = false;
 				}
 
 				for (var i = p + 1; i <= n; i++) {
@@ -35,19 +39,24 @@
 				p = i;
 			} while (p * p < n);
 
+			console.log(arr);
 			return arr;
 		}
 
 		function sum(arr) {
 			var result = 0;
 			for (var i = 0; i < arr.length; i++) {
-				result += arr[i];
+				if (arr[i])	result += i;
 			}
 			return result;
+			// return arr.slice(2).reduce(function(sum, current, index, arr) { 
+			// 	var result = 0;
+			// 	if (sum) { result += index +   });
 		}
+		
 
 		// console.log(findPrimes(100));
-		console.log(sum(primes(100)));
+		console.log(sum(findPrimes(100)));
 	</script>
 </body>
 

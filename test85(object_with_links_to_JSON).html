@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+  
+
+<body>
+  <script>
+  "use strict";
+
+  var leader = {
+    name: "Василий Иванович"
+  };
+
+  var soldier = {
+    name: "Петька"
+  };
+
+  // эти объекты ссылаются друг на друга!
+  leader.soldier = soldier;
+  soldier.leader = leader;
+
+  var team = [leader, soldier];
+
+  // team.toJSON = 
+  // РАБОЧИЙ МЕТОД ДЛЯ КАЖДОГО
+  // var cache = [];
+  // var result = JSON.stringify(soldier, function(key, value) {
+  //   if (typeof value === 'object' && value !== null) {
+  //     if (cache.indexOf(value) !== -1) {
+  //     return;
+  //     }
+  //     cache.push(value);
+  //   }
+  //   return value;
+  // });
+  // alert(result)
+
+
+  /*Ну вот такой вариант решения. Суть в том, что метод toJSON возвращает пары "ключ: значение" если они примитивы. Если же попадает на объект, то он проходится по объекту, и если какое либо значение равно самому объекту, в котором вызван метод toJSON, то он вместо объекта возвращает строку с соответствующим уведомлением.*/
+  /*Однако нет метода для JSON.parse и на выходе мы получим строку, а не объект */
+
+  leader.toJSON = function(){return crossLinkDetector.call(this);}
+  soldier.toJSON = function(){return crossLinkDetector.call(this);}
+
+  function crossLinkDetector(){
+    var result = {};
+    for (var key in this){
+      if (typeof(this[key]) == 'object'){
+        for (var k in this[key]){
+          if (this[key][k] == this){
+            result[key] = 'Cross link detected in object';
+            break;
+          }
+        }
+      }else result[key] = this[key];
+    }
+    return result;
+  }
+
+  var jsonString = JSON.stringify(team);
+  alert(jsonString);
+  var backToObj = JSON.parse(jsonString);
+  alert(backToObj[0]);
+  alert(backToObj[1]);
+
+  // http://stackoverflow.com/questions/4816099/chrome-sendrequest-error-typeerror-converting-circular-structure-to-json
+  // http://stackoverflow.com/questions/11616630/json-stringify-avoid-typeerror-converting-circular-structure-to-json
+
+  </script>
+</body>
+
+</html>

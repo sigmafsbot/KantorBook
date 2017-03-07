@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+	
+
+<body>
+	<script>
+	// http://stackoverflow.com/questions/31484535/javascript-classes-with-getter-and-setter-cause-rangeerror-maximum-call-stack-s
+	"use strict"
+
+	function User(fullName) {
+		var split = fullName.split(' ');
+		this.fName = split[0];
+		this.lName = split[1];
+		this.fullName = this.fName + '  ' + this.lName;
+	};
+
+	var vasya = new User("Василий Попкин");
+
+	Object.defineProperties(vasya, {
+		firstName: {
+			get: function() {
+				return this.fName;
+			},
+			set: function(firstname) {
+				this.fName = firstname;
+				this.fullName =  this.fName + ' ' + this.lName;
+			}
+		},
+
+		lastName: {
+			get: function() {
+				return this.lName;
+			},
+			set: function(lastname) {
+				this.lName = lastname;
+				this.fullName =  this.fName + ' ' + this.lName;
+			}
+		}
+	});
+
+	// чтение firstName/lastName
+	alert( vasya.firstName ); // Василий
+	alert( vasya.lastName ); // Попкин
+
+	// запись в lastName
+	vasya.lastName = 'Сидоров';
+
+	alert( vasya.fullName ); // Василий Сидоров
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+  
+
+<body>
+  <script>
+"use strict";
+
+  function formatDate(date) {
+      
+    var type = {}.toString.call(date).slice(8, -1);
+    var obj = {
+      'Number' : function () {
+        return new Date(date * 1e3);
+      }, 
+      'String' : function () {
+        return new Date(date);
+      },
+      'Array' : function () {
+        date[1]++;
+        return new Date(date.join('-'))
+      }, 
+      'Date' : function () {
+        return new Date(date);
+      },
+      options : {
+        year: '2-digit',
+        month: '2-digit',
+        day: '2-digit'
+      }
+    };
+   return obj[type](date).toLocaleString('ru', obj.options);
+  }
+
+  // И ЕЩЁ ОДНО 
+  /*
+  function formatDate(date) {
+    switch ({}.toString.call(date).slice(8, 9)) {
+        case 'A': return f(new Date(date[0], date[1], date[2]))
+        case 'N': return f(new Date(date * 1e3))
+        case 'S': return f(new Date(date))
+        case 'D': return f(date)
+    }
+
+    function f(d) {
+        var s = '2-digit'
+        return d.toLocaleString('ru', {year: s, month: s, day: s})
+    }
+  }
+  */
+
+  alert( formatDate('2011-10-02') ); // 02.10.11
+  alert( formatDate(1234567890) ); // 14.02.09 // СЕКУНДЫ, а не милисекунды => * 1000
+  alert( formatDate([2014, 0, 1]) ); // 01.01.14 // new Date(arr[0], arr[1], arr[2]);
+  alert( formatDate(new Date(2014, 0, 1)) ); // 01.01.14
+
+  </script>
+</body>
+
+</html>

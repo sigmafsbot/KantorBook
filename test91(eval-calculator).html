@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+  
+
+<body>
+  <script>
+  "use strict";
+
+  function calculator() {
+    var str = prompt('Please enter mathematical expression: ', '');
+    return eval(str);
+  }
+
+  // При этом посетитель потенциально может делать все, что угодно. Чтобы ограничить выражения только математикой, вводимую строку нужно проверять при помощи регулярных выражений на наличие любых символов, кроме букв, пробелов и знаков пунктуации.
+
+  // РЕШЕНИЕ БЕЗ eval()
+  /*
+  str = prompt('','2+2*2');
+  f = new Function('','return '+str);
+  alert(f());
+  
+  см. evernote комменты к главе
+  */
+
+
+  alert(calculator());
+
+  </script>
+</body>
+
+</html>

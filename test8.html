@@ -8,13 +8,15 @@
 <body>
 	<!-- <script src="script1.js"></script> -->
 	<script>
-		for (num = 2; num <= 1000; num++) {
+
+	// НЕВЕРНОЕ РЕШЕНИЕ
+		for (num = 2; num <= 100; num++) {
 			if (num <= 3)  {
 				alert(num);
 			} else if (!(num % 2) || !(num % 3) || ((num >= 5**2) && !(num % 5))) {
 				continue;
 			} else if ((num >= 7**2) && !(num % 7)) {
-				continue
+				continue;
 			} else {
 				alert(num);
 			}

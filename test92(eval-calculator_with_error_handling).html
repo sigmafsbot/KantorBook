@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+  
+
+<body>
+  <script>
+  "use strict";
+
+  // function calculator() {
+  //   var str = prompt('Please enter mathematical expression: ', '');
+  //   try {
+  //     var result = eval(str);
+
+  //     if (isNaN(result)) {
+  //       throw new Error("NaN Error");
+  //       calculator();
+  //     }
+  //   } catch (e) {
+  //     alert('Ошибка ' + e.name + ':' + e.message)
+  //     calculator();
+  //   }
+  //   return result;
+  // }
+  // alert(calculator());
+
+  // РЕШЕНИЕ КАНТОРА 
+
+  var expr, res;
+  while (true) {
+    expr = prompt('Please enter mathematical expression: ', '');
+    if (expr === null) break;
+  
+    try {
+      res = eval(expr);
+
+      if (isNaN(res)) {
+        throw new Error('Result is NaN');
+      }
+      break;
+
+    } catch (e) {
+      alert('Ошибка ' + e.name + ':' + e.message);
+    }
+  } 
+
+  alert(res);
+
+
+  </script>
+</body>
+
+</html>
