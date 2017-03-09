@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+  
+
+<body>
+  <script>
+  "use strict";
+
+  var head = {
+    glasses: 1
+  };
+
+  var table = {
+    pen: 3,
+    __proto__: head
+  };
+
+  var bed = {
+    sheet: 1,
+    pillow: 2,
+    __proto__: table
+  };
+
+  var pockets = {
+    money: 2000,
+    __proto__: bed
+  };
+
+
+  alert( pockets.pen ); // 3
+  alert( bed.glasses ); // 1
+  alert( table.money ); // undefined
+
+  var t = Date.now();
+  for (var i=0;i < 100000000;i++) {pockets.glasses}
+  alert((Date.now()-t));
+
+  var t = Date.now();
+  for (var i=0;i < 100000000;i++) {head.glasses}
+  alert((Date.now()-t));
+
+
+  // console.log( pockets.glasses );
+  // console.log( head. glasses );
+  // var t0 = performance.now();
+  // console.log( pockets.glasses );
+  // var t1 = performance.now();
+  // alert ('Total time for pockets.glasses: ' + (t1 - t0));
+
+  // var t2 = performance.now();
+  // console.log( head.glasses );
+  // var t3 = performance.now();
+  // alert ('Total time for head.glasses: ' + (t3 - t2));
+
+
+
+
+  // В современных браузерах, с точки зрения производительности, нет разницы, брать свойство из объекта или прототипа. Они запоминают, где было найдено свойство и в следующий раз при запросе, к примеру, pockets.glasses начнут искать сразу в прототипе (head).
+  
+  // НО ПОЧЕМУ ТОГДА performance.now() показывает, что обращение напрямую к свойству из объекта быстрее? Потому что правило выше работает только для второго и далее поисков. Первичный поиск будет дольше выполняться при pockets.glasses
+
+  </script>
+</body>
+
+</html>
