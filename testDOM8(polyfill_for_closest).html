@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <a href="http://example.com/file.zip">...</a>
+  <a href="http://ya.ru">...</a>
+  
+  <script>
+    //http://stackoverflow.com/questions/1014861/is-there-a-css-parent-selector
+    /***    Полифилл для closest   ***/
+    (function() {
+
+      // проверяем поддержку метода
+      if (!Element.prototype.closest) { // это метод, поэтому возможна такая проверка
+
+        // реализуем поддержку
+        Element.prototype.closest = function(css) {
+          var node = this;
+
+          while (node) {  // вверху упрёмся в null
+            if (node.matches(css)) return node;
+            else node = node.parentElement;
+          }
+
+          return null;
+        };
+    }
+
+  })();
+
+  /* Обратим внимание, что код этого полифилла использует node.matches, то есть может в свою очередь потребовать полифилла для него. Это типичная ситуация – один полифилл тянет за собой другой. Именно поэтому сервисы и библиотеки полифиллов очень полезны. */
+
+  </script>
+</body>
+
+</html>

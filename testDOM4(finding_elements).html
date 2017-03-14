@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <form name="search">
+    <label>Поиск по сайту:
+      <input type="text" name="search">
+    </label>
+    <input type="submit" value="Искать!">
+  </form>
+
+  <hr>
+
+  <form name="search-person">
+    Поиск по посетителям:
+    <table id="age-table">
+      <tr>
+        <td>Возраст:</td>
+        <td id="age-list">
+          <label>
+            <input type="radio" name="age" value="young">до 18</label>
+          <label>
+            <input type="radio" name="age" value="mature">18-50</label>
+          <label>
+            <input type="radio" name="age" value="senior">более 50</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Дополнительно:</td>
+        <td>
+          <input type="text" name="info[0]">
+          <input type="text" name="info[1]">
+          <input type="text" name="info[2]">
+        </td>
+      </tr>
+
+    </table>
+
+    <input type="submit" value="Искать!">
+  </form>
+
+  <script>
+    // var table = document.getElementByID('age-table');
+    // table.getElementsByTagName('label'); // Все элементы label внутри таблицы. Должно быть 3 элемента.
+
+    // table.rows[0].cells[0]; // Первую ячейку таблицы (со словом "Возраст").
+
+    // document.getElementsByTagName('form')[1]; // Вторую форму в документе.
+
+    // var searchForm = document.getElementsByTagName('form')[name='search']; // Форму с именем search, без использования её позиции в документе.
+
+    // searchForm.getElementsByTagName('input')[0]; // Элемент input в форме с именем search. Если их несколько, то нужен первый.
+
+    // document.getElementsByName('info[0]'); // Элемент с именем info[0], без точного знания его позиции в документе.
+
+    // document.querySelector('form[name="search-person"] [name="info[0]"]'); // Элемент с именем info[0], внутри формы с именем search-person.
+    
+    ////////////// РЕШЕНИЕ КАНТОРА
+    // 1
+    document.getElementById('age-table').getElementsByTagName('label');
+
+    // 2
+    document.getElementById('age-table').getElementsByTagName('td')[0];
+    // в современных браузерах можно одним запросом:
+    var result = document.querySelector('#age-table td');
+
+    // 3
+    document.getElementsByTagName('form')[1];
+
+    // 4
+    document.querySelector('form[name="search"]');
+
+    // 5
+    document.querySelector('form[name="search"] input')
+
+    // 6
+    document.getElementsByName("info[0]")[0];
+
+    // 7
+    document.querySelector('form[name="search-person"] [name="info[0]"]');
+
+  </script>
+</body>
+
+</html>

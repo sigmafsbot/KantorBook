@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+
+  <script>
+  var data = {
+    "Рыбы": {
+      "Форель": {},
+      "Щука": {}
+    },
+
+    "Деревья": {
+      "Хвойные": {
+        "Лиственница": {},
+        "Ель": {}
+      },
+      "Цветковые": {
+        "Берёза": {},
+        "Тополь": {}
+      }
+    }
+  };
+
+  function createTree(obj) {
+    var ul = document.createElement('ul');
+    document.body.appendChild(ul);
+
+    var keys = Object.keys(obj);
+    var values = Object.values(obj);
+
+    function checkIfObj() {
+      for (i = 0; i < keys.length; i++) {
+        var li = document.createElement('li');
+        li.textContent = keys[i];
+        ul.appendChild(li);
+
+        // if (typeof values[i] === 'object') {
+        //   for (var y = 0; )
+        // }
+      } 
+    }
+    checkIfObj();
+  }
+
+  createTree(data);
+
+  </script>
+</body>
+
+</html>

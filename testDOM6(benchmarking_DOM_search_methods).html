@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <p>7</p>
+  <p>8</p>
+  <p>9</p>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <p>7</p>
+  <p>8</p>
+  <p>9</p>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <p>7</p>
+  <p>8</p>
+  <p>9</p>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <p>7</p>
+  <p>8</p>
+  <p>9</p>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <p>7</p>
+  <p>8</p>
+  <p>9</p>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <p>7</p>
+  <p>8</p>
+  <p>9</p>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <p>7</p>
+  <p>8</p>
+  <p>9</p>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <p>7</p>
+  <p>8</p>
+  <p>9</p>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <p>7</p>
+  <p>8</p>
+  <p>9</p>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <p>7</p>
+  <p>8</p>
+  <p>9</p>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <p>7</p>
+  <p>8</p>
+  <p>9</p>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <p>7</p>
+  <p>8</p>
+  <p>9</p>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <p>7</p>
+  <p>8</p>
+  <p>9</p>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <p>7</p>
+  <p>8</p>
+  <p>9</p>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <p>7</p>
+  <p>8</p>
+  <p>9</p>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <p>7</p>
+  <p>8</p>
+  <p>9</p>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <p>7</p>
+  <p>8</p>
+  <p>9</p>
+   
+  <script>
+  // for (var i = 0; i < 10000; i++) document.write('<p>TEXT</p>');
+
+  // var elems = document.body.getElementsByTagName('p');
+
+  // var d = new Date();
+  // for (var i = 0; i < elems.length; i++) elems[i];
+  // alert('getElementsByTagName: ' + (new Date - d) + "ms");
+
+
+  // var elems2 = document.body.querySelectorAll('p')
+  // var d2 = new Date();
+  // for (var i = 0; i < elems2.length; i++) elems2[i];
+  // alert('querySelectorAll: ' + (new Date - d2) + "ms"); 
+
+  
+  function bench(f, times) {
+    var d = new Date();
+    for (var i = 0; i < times; i++) f();
+    return new Date() - d;
+  }
+
+
+  function runGetList() {
+    var results = document.getElementsByTagName('p');
+    var len = results.length;
+    for (var i = 0; i < len; i++) {
+      var elem = results[i];
+    }
+  }
+
+  function runQueryList() {
+    var results = document.querySelectorAll('p');
+    var len = results.length;
+    for (var i = 0; i < len; i++) {
+      var elem = results[i];
+    }
+  }
+
+
+  function log(msg) {
+    alert(msg);
+  }
+
+
+  log('getElementsByTagName: ' + bench(runGetList, 10000));
+  log('querySelectorAll: ' + bench(runQueryList, 10000));
+
+
+  /*
+  Для бенчмаркинга будем использовать функцию bench(f, times), которая запускает функцию f times раз и возвращает разницу во времени:
+
+  function bench(f, times) {
+    var d = new Date();
+    for (var i = 0; i < times; i++) f();
+    return new Date() - d;
+  }
+
+  Первый вариант (неверный) – замерять разницу между функциями runGet/runQuery, вот так:
+
+  function runGet() {
+    var results = document.getElementsByTagName('p');
+  }
+
+  function runQuery() {
+    var results = document.querySelectorAll('p');
+  }
+
+  alert( bench(runGet, 10000) ); // вывести время 1000*runGet
+
+  Он даст неверные результаты, т.к. getElementsByTagName является «живым поисковым запросом». Если не обратиться к его результатам, то поиска не произойдет вообще, т.е. runGet ничего по сути не ищет.
+
+  …А querySelectorAll всегда производит поиск и формирует список элементов.
+
+  Более правильный тест – это не только запустить поиск, но и получить все элементы, как это делается в реальной жизни.
+
+  */
+
+   
+  </script>
+</body>
+
+</html>

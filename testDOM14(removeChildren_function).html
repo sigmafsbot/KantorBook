@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <table id="table">
+    <tr>
+      <td>Это</td>
+      <td>Все</td>
+      <td>Элементы DOM</td>
+    </tr>
+  </table>
+
+  <ol id="ol">
+    <li>Вася</li>
+    <li>Петя</li>
+    <li>Маша</li>
+    <li>Даша</li>
+  </ol>
+
+  <script>
+    // моё решение 
+    function removeChildren(elem) {
+      for (var i = 0; i < elem.children.length; i) { // здесь можно не делать инкремент т.к. массив сам будет уменьшаться, как и его .length 
+        elem.removeChild(elem.children[i]);
+      }
+    }
+
+    // РЕШЕНИЕ КАНТОРА
+
+    // function removeChildren(elem) {
+    //   while (elem.lastChild) {
+    //     elem.removeChild(elem.lastChild);
+    //   }
+    // }
+
+    removeChildren(table); // очищает таблицу
+    removeChildren(ol); // очищает список
+  </script>
+</body>
+
+</html>
