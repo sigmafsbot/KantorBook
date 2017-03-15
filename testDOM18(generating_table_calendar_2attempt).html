@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 3px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #E6E6E6;
+    }
+  </style>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <div id="cal"></div>
+
+  <script>
+
+  function createCalendar(id, year, month) {
+    var elem = document.getElementById(id);
+
+    // var table = document.createElement('table');
+    // заполняем дни недели
+    var table = '<table><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr><tr>';
+
+    var mon = month - 1;
+    var d = new Date(year, mon); // так будет первый день искомого месяца
+    // var options = { day: '2-digit'};
+   
+
+    function startPadding() {
+      for (let i = 0; i < getDay(d); i++) {        // LET
+        table += '<td></td>';
+      }
+    }
+    
+    startPadding();
+
+    while (d.getMonth() == mon) {
+      table += '<td>' + d.getDate() + '</td>';
+
+      if (getDay(d) % 7 == 6) {
+        table += '</tr></tr>';
+      }
+
+      d.setDate(d.getDate() + 1);
+      // var tr = document.createElement('tr');
+    }
+
+    if (getDay(d) != 0) {   // или просто !
+      for (let i = getDay(d); i < 7; i++)  {       // LET
+        table += '<td></td>';  //lastChild???
+      }
+    }
+
+    // закрытие таблицы
+    table += '</tr></table>'
+
+    elem.innerHTML = table;
+    // elem.appendChild(table); // добавляем итоговый table в div 
+  }
+
+  function getDay(date) {
+      let day = date.getDay();
+      if (day == 0) day = 7;
+      return day - 1;
+  }
+
+
+  createCalendar("cal", 2013, 9)  // если в кавычках - не будет просто так работать, надо обрабатывать
+
+  </script>
+</body>
+
+</html>

@@ -33,10 +33,11 @@
     // заполняем дни недели через innerHTML
     table.innerHTML += '<tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr>'
 
-    var date = new Date(year, month, 0); // так будет последнее число месяца, можно легко проверить количество дней с помощью .getDate();
-    var totalDays = date.getDate();  // потом в условие цикла можно пока не выйдет за рамки (do ... while)
+    // var date = new Date(year, month, 0); // так будет последнее число месяца, можно легко проверить количество дней с помощью .getDate();
+    var date = new Date(year, month - 1); // так будет первый день искомого месяца
+    // var totalDays = date.getDate();  // потом в условие цикла можно пока не выйдет за рамки (do ... while)
     var options = { day: '2-digit'};
-    var currentDay = new Date(date.setDate(date.getDate() - (totalDays - 1))); // или просто 1?  так будет первый день месяца с помощью currentDay.getDate() === 1;
+    // var currentDay = new Date(date.setDate(date.getDate() - (totalDays - 1))); // или просто 1?  так будет первый день месяца с помощью currentDay.getDate() === 1;
     // curDays.setDate(curDays.getDate() + 1);
 
 
@@ -44,8 +45,16 @@
     // date.setDate(date.getDate()-1);
     // date.setDate(date.getDate() - (totalDays - 1)) // так попадём на первый день месяца
 
+    function startPadding(tr) {
+      for (var i = 1; i < date.getDate(); i++) {
+        tr.innerHTML += '<td></td>';
+      }
+    }
+
     for (var weekdays = 1; weekdays <= 5; weekdays++) { //  Math.ceil(числоДней + число пустых в начале)
       var tr = document.createElement('tr');
+
+      // startPadding();
       for (var day = 1; day % 8 != 0; day++) {
         var td = document.createElement('td');
         td.innerHTML = String(currentDay.toLocaleDateString("ru", options)/1);
