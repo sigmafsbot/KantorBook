@@ -2,87 +2,54 @@
 <html>
 
 <head>
+  <style>
+    .hour { color: red; }
+    .min { color: green; }
+    .sec { color: blue; }
+  </style>
   <meta charset="utf-8">
 </head>
 
 <body>
 
-  <div id="container"></div>
+  <div id="clock">
+    <span class="hour">hh</span>:<span class="min">mm</span>:<span class="sec">ss</span>    
+  </div>
+    
 
   <script>
-  var data = {
-    "Рыбы": {
-      "Форель": {},
-      "Щука": {}
-    },
 
-    "Деревья": {
-      "Хвойные": {
-        "Лиственница": {},
-        "Ель": {}
-      },
-      "Цветковые": {
-        "Берёза": {},
-        "Тополь": {}
-      }
-    }
-  };
+  
+  function update() {
+    var clock = document.getElementById('clock');
+    var date = new Date();
 
-  function createTree(container, obj) {
-    container.appendChild(createTreeDom(obj));
+    var hours = date.getHours();
+    if (hours < 10) hours = '0' + hours;
+    clock.children[0].innerHTML = hours;
+
+    var mins = date.getMinutes();
+    if (mins < 10) mins = '0' + mins;
+    clock.children[1].innerHTML = mins;
+
+    var secs = date.getSeconds();
+    if (secs < 10) secs = '0' + secs;
+    clock.children[2].innerHTML = secs;
   }
 
+  var timer;
 
-  function createTreeDom(obj) {
-
-    if (checkEmpty(obj)) return;
-
-    var ul = document.createElement('ul');
-
-    for (var key in obj) {
-      // если нет детей, то рекурсивный вызов ничего не возвращает
-      // так что вложенный UL не будет создан
-      var li = document.createElement('li');
-      li.textContent = key;  // можно li.innerHTML = key;
-
-      var childrenUl = createTreeDom(obj[key]);
-      if (childrenUl) li.appendChild(childrenUl);
-
-
-      ul.appendChild(li);
-    }
-
-    return ul;
+  function startClock() {
+    update();
+    timer = setInterval(update, 1000);
   }
 
-  function checkEmpty(obj) {
-    for (var key in obj) { 
-      return false;
-    }
-    return true;
+  function stopClock() {
+    clearInterval(timer);
+    timer = null;
   }
 
-  var container = document.getElementById('container');
-  createTree(container, data); // создаёт
-
- //////////////////// РЕШЕНИЕ ЧЕРЕЗ innerHTML ///////////////////
-  //  function createTree(container, obj) {
-  //       container.innerHTML = createTreeText(obj);
-  //     }
-
-  // function createTreeText(obj) { // отдельная рекурсивная функция
-  //   var li = '';
-  //   for (var key in obj) {
-  //     li += '<li>' + key + createTreeText(obj[key]) + '</li>';
-  //   }
-  //   if (li) {
-  //     var ul = '<ul>' + li + '</ul>'
-  //   }
-  //   return ul || '';
-  // }
-
-  // var container = document.getElementById('container');
-  // createTree(container, data);
+  startClock();
 
   </script>
 </body>
