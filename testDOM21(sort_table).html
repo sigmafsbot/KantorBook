@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    .tg-yw4l { 
+       border-radius: 1px solid black;
+     }
+
+    th, td {
+      border: 1px solid black;
+      padding: 3px;
+      text-align: center;
+    }
+  </style>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+<table class="tg">
+  <tr class="tg-yw4l">
+    <th class="tg-yw4l">Dots</th>
+    <th class="tg-yw4l">Occupation</th>
+    <th class="tg-yw4l">Name</th>
+    <th class="tg-yw4l">Age</th>
+  </tr>
+  <tr class="tg-yw4l">
+    <td>...</td>
+    <td>data2</td>
+    <td>info</td>
+    <td>12</td>
+  </tr>
+  <tr class="tg-yw4l">
+    <td>...</td>
+    <td>data1</td>
+    <td>info</td>
+    <td>7</td>
+  </tr>
+  <tr class="tg-yw4l">
+    <td>...</td>
+    <td>data5</td>
+    <td>info</td>
+    <td>91</td>
+  </tr>
+  <tr class="tg-yw4l">
+    <td>...</td>
+    <td>data4</td>
+    <td>info</td>
+    <td>1</td>
+  </tr>
+  <tr class="tg-yw4l">
+    <td>...</td>
+    <td>data6</td>
+    <td>info</td>
+    <td>434</td>
+  </tr>
+  <tr class="tg-yw4l">
+    <td>...</td>
+    <td>data8</td>
+    <td>info</td>
+    <td>36</td>
+  </tr>
+  <tr class="tg-yw4l">
+    <td>...</td>
+    <td>data3</td>
+    <td>info</td>
+    <td>35</td>
+  </tr>
+  <tr class="tg-yw4l">
+    <td>...</td>
+    <td>data9</td>
+    <td>info</td>
+    <td>22</td>
+  </tr>
+  <tr class="tg-yw4l">
+    <td>...</td>
+    <td>data2</td>
+    <td>info</td>
+    <td>71</td>
+  </tr>
+  <tr class="tg-yw4l">
+    <td>...</td>
+    <td>data7</td>
+    <td>info</td>
+    <td>8</td>
+  </tr>
+</table>
+    
+
+  <script>
+
+  /* так мы пока сортируем только последний столбец. "Вот так, с помощью нехитрых приспособлений буханку черного хлеба можно превратить в троллейбус... НО ЗАЧЕМ? */
+  // http://plnkr.co/edit/GNvczAkbIgUJBuxJHHhh?p=preview
+
+  function num(a, b) {
+    // return a.lastElementChild.innerHTML - b.lastElementChild.innerHTML
+    return a - b;
+  }
+
+  var tbody = document.querySelector('table > tbody');
+
+  var resArr = [];
+  for (let i = 1; i < tbody.children.length; i++) {
+    resArr.push(tbody.children[i].lastElementChild.innerHTML);
+  } 
+
+  resArr.sort(num);
+
+  for (let i = 1; i < tbody.children.length; i++) {
+
+    var td = document.createElement('td');
+    td.innerHTML = '<tr>' + resArr[i-1] + '</tr>';
+    tbody.children[i].lastElementChild.replaceWith(td);
+  }
+
+  </script>
+</body>
+
+</html>
