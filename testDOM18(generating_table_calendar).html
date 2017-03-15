@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 3px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #E6E6E6;
+    }
+  </style>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <div id="cal"></div>
+
+  <script>
+
+  function createCalendar(id, year, month) {
+    var id = document.getElementById(id);
+    var table = document.createElement('table');
+    
+    // заполняем дни недели через innerHTML
+    table.innerHTML += '<tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr>'
+
+    var date = new Date(year, month, 0); // так будет последнее число месяца, можно легко проверить количество дней с помощью .getDate();
+    var totalDays = date.getDate();  // потом в условие цикла можно пока не выйдет за рамки (do ... while)
+    var options = { day: '2-digit'};
+    var currentDay = new Date(date.setDate(date.getDate() - (totalDays - 1))); // или просто 1?  так будет первый день месяца с помощью currentDay.getDate() === 1;
+    // curDays.setDate(curDays.getDate() + 1);
+
+
+    // в цикл ?
+    // date.setDate(date.getDate()-1);
+    // date.setDate(date.getDate() - (totalDays - 1)) // так попадём на первый день месяца
+
+    for (var weekdays = 1; weekdays <= 5; weekdays++) { //  Math.ceil(числоДней + число пустых в начале)
+      var tr = document.createElement('tr');
+      for (var day = 1; day % 8 != 0; day++) {
+        var td = document.createElement('td');
+        td.innerHTML = String(currentDay.toLocaleDateString("ru", options)/1);
+        tr.appendChild(td);
+        currentDay.setDate(currentDay.getDate() + 1);
+      } 
+        // tr.innerHTML = "lol";
+      table.appendChild(tr);
+    }
+
+    id.appendChild(table); // добавляем итоговый table в div 
+  }
+
+
+  createCalendar("cal", 2016, 8)  // если в кавычках - не будет просто так работать, надо обрабатывать
+
+  // https://www.w3schools.com/html/html_tables.asp
+  // http://stackoverflow.com/questions/10940714/how-do-you-select-a-table-cell-by-its-index
+  // так можно убирать лишние нули в начале String(date.toLocaleDateString("ru", options)/1)
+
+
+  </script>
+</body>
+
+</html>

@@ -13,6 +13,8 @@
     var elem = document.createElement('div');
     elem.innerHTML = '<b>Новый элемент</b>';
 
+    var elem2 = elem.cloneNode(true);
+
     function insertAfter(elem, refElem) { 
       refElem.parentNode.insertBefore(elem, refElem.nextElementSibling);
     }
@@ -20,10 +22,10 @@
     var body = document.body;
 
     // вставить elem после первого элемента
-    insertAfter(elem, body.firstChild); // <--- должно работать
+    insertAfter(elem, body.firstElementChild); // <--- должно работать // еслиbody.firstChild, то посчитает текстовый узел
 
     // вставить elem за последним элементом
-    // insertAfter(elem, body.lastChild); // <--- должно работать
+    insertAfter(elem2, body.lastChild); // <--- должно работать
   </script>
 
 </body>

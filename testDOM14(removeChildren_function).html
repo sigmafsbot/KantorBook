@@ -23,22 +23,44 @@
 
   <script>
     // моё решение 
-    function removeChildren(elem) {
-      for (var i = 0; i < elem.children.length; i) { // здесь можно не делать инкремент т.к. массив сам будет уменьшаться, как и его .length 
-        elem.removeChild(elem.children[i]);
-      }
-    }
-
-    // РЕШЕНИЕ КАНТОРА
-
     // function removeChildren(elem) {
-    //   while (elem.lastChild) {
-    //     elem.removeChild(elem.lastChild);
+    //   for (var i = 0; i < elem.children.length; i) { // здесь можно не делать инкремент т.к. массив сам будет уменьшаться, как и его .length 
+    //     elem.removeChild(elem.children[i]);
     //   }
     // }
 
+    // РЕШЕНИЕ КАНТОРА
+
+    function removeChildren(elem) {
+      while (elem.lastChild) {
+        elem.removeChild(elem.lastChild);
+      }
+    }
+
     removeChildren(table); // очищает таблицу
     removeChildren(ol); // очищает список
+
+    /* Альтернатива через innerHTML
+
+    Можно и просто обнулить содержимое через innerHTML:
+
+    function removeChildren(elem) {
+      elem.innerHTML = '';
+    }
+    Это не будет работать в IE8- для таблиц, так как на большинстве табличных элементов (кроме ячеек TH/TD) в старых IE запрещено менять innerHTML.
+
+    Впрочем, можно завернуть innerHTML в try/catch:
+
+    function removeChildren(elem) {
+      try {
+        elem.innerHTML = '';
+      } catch (e) {
+        while (elem.firstChild) {
+          elem.removeChild(elem.firstChild);
+        }
+      }
+    } 
+    */
   </script>
 </body>
 
