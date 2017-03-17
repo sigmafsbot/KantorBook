@@ -7,7 +7,7 @@
       border-collapse: collapse;
     }
 
-    .tg-yw4l { 
+    td { 
        border-radius: 1px solid black;
      }
 
@@ -98,25 +98,42 @@
   // http://plnkr.co/edit/GNvczAkbIgUJBuxJHHhh?p=preview
 
   function num(a, b) {
+    return a.value.innerHTML - b.value.innerHTML
     // return a.lastElementChild.innerHTML - b.lastElementChild.innerHTML
-    return a - b;
+    // return a - b;
   }
 
   var tbody = document.querySelector('table > tbody');
 
   var resArr = [];
   for (let i = 1; i < tbody.children.length; i++) {
-    resArr.push(tbody.children[i].lastElementChild.innerHTML);
+    resArr.push({ elem: tbody.children[i],
+                  value: tbody.children[i].lastElementChild });
   } 
 
   resArr.sort(num);
 
-  for (let i = 1; i < tbody.children.length; i++) {
+  // http://stackoverflow.com/questions/4777077/removing-elements-by-class-name
+  document.body.removeChild(tbody.parentElement);
 
-    var td = document.createElement('td');
-    td.innerHTML = '<tr>' + resArr[i-1] + '</tr>';
-    tbody.children[i].lastElementChild.replaceWith(td);
+  // var newTbody = tbody.cloneNode(true);
+  var newTable = document.createElement('table');
+  var ths = '<tr><th>Dots</th><th>Occupation</th><th>Name</th><th>Age</th></tr>';
+  newTable.innerHTML = ths;
+  
+  for (let i = 0; i < resArr.length; i++) {
+    newTable.append(resArr[i].elem)
   }
+ 
+
+  document.body.appendChild(newTable);
+
+  // for (let i = 1; i < tbody.children.length; i++) {
+
+    // var td = document.createElement('td');
+    // td.innerHTML = '<tr>' + resArr[i-1] + '</tr>';
+    // tbody.children[i].lastElementChild.replaceWith(td);
+  // }
 
   </script>
 </body>
