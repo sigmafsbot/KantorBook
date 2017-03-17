@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rounded button</title>
+</head>
+
+<!-- как создать элемент сразу же с классами
+http://stackoverflow.com/questions/18648500/add-id-class-to-objects-from-createelement-method -->
+<body>
+
+  <script>
+  var a = document.createElement('a');
+  a.className = 'button';
+  a.href = '/';
+  a.textContent = 'Нажми меня';
+
+  a.style.cssText = `border-radius: 8px; \ 
+    border: 2px groove green; \
+    display: block; \
+    height: 30px; \
+    line-height: 30px; \
+    width: 100px; \
+    text-decoration: none; \
+    text-align: center; \
+    color: red; \
+    font-weight: bold; \
+    -moz-border-radius: 8px; \
+    -webkit-border-radius: 8px;`;
+
+    alert(a.style.cssText);
+    document.body.appendChild(a);
+  </script>
+
+</body>
+</html>
